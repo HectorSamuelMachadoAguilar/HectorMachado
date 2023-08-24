@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>API</title>
+</head>
+<body>
+    <button id="XML">Petición XML Request</button>
+    <button id="Async">Fetch Async</button>
+    <button id="Promise">Fetch Promises</button>
+    <button id="JQ">JQuery</button>
+    <button id="Axios">Axios</button>
+
+    <br><label id="chiste">
+
+    <script>
+        document.getElementById("XML").addEventListener("click", async function(){
+            const xhr = new XMLHttpRequest();
+
+            xhr.addEventListener("readystatechange", function(){
+                if(this.readyState === this.DONE){
+                    var data = JSON.parse(this.responseText);
+                    document.getElementById("chiste").textContent = data.value;
+                }
+            });
+            const data = null;
+
+            xhr.open("GET", "https://api.chucknorris.io/jokes/random");
+            xhr.send(data);
+        });
+
+        document.getElementById("Async").addEventListener("click", async function(){
+            let response = await fetch("https://api.chucknorris.io/jokes/random");
+            let data = await response.json();
+            document.getElementById("chiste").textContent = data.value;
+        });
+
+        document.getElementById("Promise").addEventListener("click", function(){
+            fetch("https://api.chucknorris.io/jokes/random")
+            .then( response => response.json())
+            .then( (data) =>{
+                document.getElementById("chiste").textContent=data.value;
+            })
+        });
+
+        document.getElementById("JQ").addEventListener("click", function(){
+            $.get("https://api.chucknorris.io/jokes/random", (data, status) => {
+                document.getElementById("chiste").textContent=data.value;
+            })
+        });
+
+        document.getElementById("Axios").addEventListener("click", async function(){
+            let reqOptions = {
+                url: "https://api.chucknorris.io/jokes/random"
+            };
+
+            let response = await axios.request(reqOptions);
+            document.getElementById("chiste").textContent=response.data.value;
+            console.log(response.data);
+        });
+                //const imgElement = document.getElementById("imagen");
+                //imgElement.src = response.data.message; // Establecer la URL de la imagen como src
+    </script>
+</body>
+</html>
