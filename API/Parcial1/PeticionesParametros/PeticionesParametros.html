@@ -9,8 +9,8 @@
     <title>API</title>
 </head>
 <body>
-    <p>Nombre: <input id="Nombre">
-    <p>Apellido: <input id="Apellido">
+    <p id="nombre" class="texto">Nombre: <input type="text" id="DatoNombre">
+    
     <center>
     <button id="XML" class="boton">Petición XML Request</button>
     <button id="Async" class="boton">Fetch Async</button>
@@ -22,13 +22,29 @@
     <label class="texto" id="chiste"></center>
 
     <script>
+
+
         document.getElementById("XML").addEventListener("click", async function(){
+            const NombreInput = document.getElementById("DatoNombre");
             const xhr = new XMLHttpRequest();
 
             xhr.addEventListener("readystatechange", function(){
                 if(this.readyState === this.DONE){
                     var data = JSON.parse(this.responseText);
-                    document.getElementById("chiste").textContent = data.value;
+            
+                    if (NombreInput.value == ""){
+                        document.getElementById("chiste").textContent = data.value;
+                    }
+                    else{
+                        const nombre = NombreInput.value;
+                        const TextoApi = data.value;
+
+                        const textoReemplazado = TextoApi.replace('Chuck Norris', nombre);
+
+                        data.value = textoReemplazado;
+                    
+                        document.getElementById("chiste").textContent = data.value;
+                    }
                 }
             });
             const data = null;
@@ -38,32 +54,84 @@
         });
 
         document.getElementById("Async").addEventListener("click", async function(){
+            const NombreInput = document.getElementById("DatoNombre");
             let response = await fetch("https://api.chucknorris.io/jokes/random");
             let data = await response.json();
-            document.getElementById("chiste").textContent = data.value;
+            if (NombreInput.value == ""){
+                        document.getElementById("chiste").textContent = data.value;
+                    }
+                    else{
+                        const nombre = NombreInput.value;
+                        const TextoApi = data.value;
+
+                        const textoReemplazado = TextoApi.replace('Chuck Norris', nombre);
+
+                        data.value = textoReemplazado;
+                    
+                        document.getElementById("chiste").textContent = data.value;
+                    }
         });
 
         document.getElementById("Promise").addEventListener("click", function(){
+            const NombreInput = document.getElementById("DatoNombre");
             fetch("https://api.chucknorris.io/jokes/random")
             .then( response => response.json())
             .then( (data) =>{
-                document.getElementById("chiste").textContent=data.value;
+                if (NombreInput.value == ""){
+                        document.getElementById("chiste").textContent = data.value;
+                    }
+                    else{
+                        const nombre = NombreInput.value;
+                        const TextoApi = data.value;
+
+                        const textoReemplazado = TextoApi.replace('Chuck Norris', nombre);
+
+                        data.value = textoReemplazado;
+                    
+                        document.getElementById("chiste").textContent = data.value;
+                    }
             })
         });
 
         document.getElementById("JQ").addEventListener("click", function(){
+            const NombreInput = document.getElementById("DatoNombre");
             $.get("https://api.chucknorris.io/jokes/random", (data, status) => {
-                document.getElementById("chiste").textContent=data.value;
+                if (NombreInput.value == ""){
+                        document.getElementById("chiste").textContent = data.value;
+                    }
+                    else{
+                        const nombre = NombreInput.value;
+                        const TextoApi = data.value;
+
+                        const textoReemplazado = TextoApi.replace('Chuck Norris', nombre);
+
+                        data.value = textoReemplazado;
+                    
+                        document.getElementById("chiste").textContent = data.value;
+                    }
             })
         });
 
         document.getElementById("Axios").addEventListener("click", async function(){
+            const NombreInput = document.getElementById("DatoNombre");
             let reqOptions = {
                 url: "https://api.chucknorris.io/jokes/random"
             };
 
             let response = await axios.request(reqOptions);
-            document.getElementById("chiste").textContent=response.data.value;
+            if (NombreInput.value == ""){
+                document.getElementById("chiste").textContent=response.data.value;
+            }
+            else{
+                const nombre = NombreInput.value;
+                const TextoApi = response.data.value;
+
+                const textoReemplazado = TextoApi.replace('Chuck Norris', nombre);
+
+                response.data.value = textoReemplazado;
+                    
+                document.getElementById("chiste").textContent=response.data.value;
+            }
             console.log(response.data);
         });
     </script>
