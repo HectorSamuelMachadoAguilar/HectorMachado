@@ -1,0 +1,19 @@
+{
+  "name": "hm-module",
+  "version": "1.0.0",
+  "description": "Ejercicio de creacion de modulo en Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Error: test no specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HectorSamuelMachadoAguilar/HectorMachado.git"
+  },
+  "author": "Hector Machado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HectorSamuelMachadoAguilar/HectorMachado/issues"
+  },
+  "homepage": "https://github.com/HectorSamuelMachadoAguilar/HectorMachado#readme"
+}
