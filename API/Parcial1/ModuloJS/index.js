@@ -4,6 +4,6 @@ function obtieneFrase(indice) {
     return frases(indice);
 }
 
-module.exports.obtineFrase=obtieneFrase;
+module.exports.obtieneFrase=obtieneFrase;
 
 console.log(module)

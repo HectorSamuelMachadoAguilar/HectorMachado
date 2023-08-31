@@ -7,24 +7,24 @@
 </head>
 <body>
   
-  <button class="btn btn-outline-info" id="btnAsincrono">Asincrono</button>
-  <button class="btn btn-outline-info" id="btnSincrono">Sincrono</button>
+  <button id="btnAsincrono">Asincrono</button>
+  <button id="btnSincrono">Sincrono</button>
   <br><br><br>
   <div id="Frase" style="color:white; font-size:50px;"></div>
   
   <script type="module">
-    import { obtieneFrase } from './miModulo.js';
+    import * as Mimodulo from './miModulo.js';
 
 
     document.getElementById('btnAsincrono').addEventListener('click', async () => {
       await import('./miModulo.js').then( module => {
-        document.getElementById('Frase').innerText = module.obtieneFrase(0);
+        document.getElementById('Frase').innerText = Mimodulo.obtieneFrase(2);
       })
     });
   
     document.getElementById('btnSincrono').addEventListener("click", () => {
-        document.getElementById('Frase').innerText = miModulo.obtieneFrase(2);
-    })
+        document.getElementById('Frase').innerText = Mimodulo.obtieneFrase(1);
+    });
   
   </script>
 
