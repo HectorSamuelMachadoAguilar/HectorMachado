@@ -1,0 +1,26 @@
+*{
+    background-color: lightblue;
+}
+
+.boton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.my-button:hover {
+    background-color: green;
+}
+
+.my-button:active {
+    background-color: #3e8e41;
+}
+
+.texto {
+    font-family: fantasy;
+    font-size: large;
+    font-weight: bolder;
+}
