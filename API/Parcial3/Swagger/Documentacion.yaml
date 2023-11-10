@@ -1,0 +1,19 @@
+openapi: 3.0.0
+info:
+  title: 'API Login'
+  version: '1.0.0'
+paths:
+    delete:
+      summary: Eliminar un usuario por ID
+      parameters:
+        - in: query
+          name: Tipo
+          required: true
+          description: ID del usuario a eliminar
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Usuario eliminado exitosamente
+        '500':
+          description: Error en el servidor
